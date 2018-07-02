@@ -18,6 +18,7 @@ class ViewController: UIViewController {
                 //Check for match method that accepts an array of indexes in Set class
                 let set = game.checkMatcOfCardsWith(Indexes:selectedCards)
                 print(set)
+                selectedCards = []
             } else {
                 return
             }
