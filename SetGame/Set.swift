@@ -23,7 +23,6 @@ class Set {
     //TODO: Method that takes an array of ints and creates and compares a 3 cards in deck with respect of indes
     
     func checkMatcOfCardsWith(Indexes indexArray:[Int]) -> Bool {
-        
         var cards = [Card]()
         for i in indexArray {
             let card = deck.deck[i]
@@ -45,7 +44,5 @@ class Set {
             print("Not a Set!!")
             return false
         }
-        
-        
     }
 }
