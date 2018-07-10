@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var game = Set()
-    var deck = Deck()
+    //var deck = Deck()
 //    var selectedCards : [Card]
     var selectedCards:[Int]! {
         didSet(newValue) {
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet var cardButton: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(deck.deck)
+        //print(deck.deck)
         //let selectedCards = [deck.deck[30],deck.deck[5],deck.deck[60]]
         selectedCards = []
     
@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(true)
         for index in cardButton.indices{
             let card = game.deck.deck[index]
+            print(card)
             makeButtonWith(card: card, button: cardButton[index])
         
         }
@@ -67,7 +68,8 @@ class ViewController: UIViewController {
     // FUNCTION RESPONSIBLE FOR DRAWING THE CARDS ON UI BUTTONS
     // Function that accepts a card and return a button with layout
     func makeButtonWith(card c:Card, button:UIButton) -> () {
-        var shape:String = ""
+        var shape = ""
+        var buttonTitle = ""
         //var title:String = ""
         //let button:UIButton = UIButton.init()
         switch c.color {
@@ -82,19 +84,33 @@ class ViewController: UIViewController {
         case .Triangle:
             shape = "▲"
         case .Circle:
-            shape = "⊖"
+            shape = "●"
         case .Square:
             shape = "■"
         }
         switch c.amount {
         case .One:
-            button.setTitle(shape, for: .normal)
+            buttonTitle = shape
+            //button.setTitle(shape, for: .normal)
         case .Two:
-            button.setTitle(shape + " " + shape, for: .normal)
+            buttonTitle = shape + " " + shape
+            //button.setTitle(shape + " " + shape, for: .normal)
         case .Three:
-            button.setTitle(shape + " " + shape + " " + shape, for: .normal)
+            buttonTitle = shape + " " + shape + " " + shape
+            //button.setTitle(shape + " " + shape + " " + shape, for: .normal)
         
-    }
-        //return button
+        }
+        switch c.shadow {
+        case .Empty:
+            let shapeEmpty = NSAttributedString(string: buttonTitle, attributes: [NSAttributedStringKey.strokeWidth:10])
+            button.setAttributedTitle(shapeEmpty, for: .normal)
+        case .Full:
+            let shapeFill = NSAttributedString(string: buttonTitle, attributes: [NSAttributedStringKey.strokeWidth:-10])
+            button.setAttributedTitle(shapeFill, for: .normal)
+        case .Stripes:
+            let shapeStriped = NSAttributedString(string: buttonTitle,
+                                                  attributes: [NSAttributedStringKey.foregroundColor:button.tintColor.withAlphaComponent(0.15)])
+            button.setAttributedTitle(shapeStriped, for: .normal)
+        }
   }
 }

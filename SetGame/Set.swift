@@ -21,7 +21,6 @@ class Set {
     //TODO: Method that will take an array holding three cards returning true if it is a set
     
     //TODO: Method that takes an array of ints and creates and compares a 3 cards in deck with respect of indes
-    
     func checkMatcOfCardsWith(Indexes indexArray:[Int]) -> Bool {
         var cards = [Card]()
         for i in indexArray {
