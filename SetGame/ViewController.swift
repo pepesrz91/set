@@ -70,15 +70,21 @@ class ViewController: UIViewController {
     func makeButtonWith(card c:Card, button:UIButton) -> () {
         var shape = ""
         var buttonTitle = ""
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 8.0
+        
         //var title:String = ""
         //let button:UIButton = UIButton.init()
         switch c.color {
         case .Blue:
             button.tintColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            button.layer.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
         case .Green:
             button.tintColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            button.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         case .Red:
             button.tintColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            button.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         }
         switch c.shape {
         case .Triangle:
