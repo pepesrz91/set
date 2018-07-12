@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var game = Set()
+    @IBOutlet weak var SetMatchLabel: UILabel!
     //var deck = Deck()
 //    var selectedCards : [Card]
     var selectedCards:[Int]! {
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
             if(selectedCards.count == 3){
                 //Check for match method that accepts an array of indexes in Set class
                 let set = game.checkMatcOfCardsWith(Indexes:selectedCards)
-                print(set)
+                SetMatchLabel.text = set ? "It is a Set!" : "Not a Set!"
                 selectedCards = []
             } else {
                 return
