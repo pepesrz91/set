@@ -13,7 +13,6 @@ class Set {
     //Create an instance of a deck
     let deck = Deck()
     
-    
     //TODO: Method that takes a deck and shuffles it.
     
     //TODO: Method that will take a deck and return a set match
@@ -36,8 +35,13 @@ class Set {
         let size = ((cardOne.amount.rawValue + cardTwo.amount.rawValue + cardThree.amount.rawValue) % 3) == 0
         let shadow = ((cardOne.shadow.rawValue + cardTwo.shadow.rawValue + cardThree.shadow.rawValue) % 3) == 0
         
+        //If there is a set remove 3 card and add 3 new
         if (shape && color && size && shadow) {
             print("Set!!")
+            for index in indexArray {
+                deck.randomDeck.remove(at: index)
+            }
+            
             return true
         }else{
             print("Not a Set!!")

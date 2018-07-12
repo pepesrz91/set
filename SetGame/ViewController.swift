@@ -18,7 +18,13 @@ class ViewController: UIViewController {
             if(selectedCards.count == 3){
                 //Check for match method that accepts an array of indexes in Set class
                 let set = game.checkMatcOfCardsWith(Indexes:selectedCards)
-                SetMatchLabel.text = set ? "It is a Set!" : "Not a Set!"
+                if(set){
+                    SetMatchLabel.text = "It is a SET!"
+                    drawCards()
+                }else{
+                    SetMatchLabel.text = "It is a NOT a SET!"
+                }
+                //self.view.setNeedsDisplay()
                 selectedCards = []
             } else {
                 return
@@ -37,11 +43,8 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        for index in cardButton.indices{
-            let card = game.deck.randomDeck[index]
-            print(card)
-            makeButtonWith(card: card, button: cardButton[index])
-        }
+        drawCards()
+        
     }
     @IBAction func selectCard(_ sender: UIButton) {
         var index = 0
@@ -119,6 +122,14 @@ class ViewController: UIViewController {
             button.setAttributedTitle(shapeStriped, for: .normal)
         }
   }
+    
+    func drawCards(){
+        for index in cardButton.indices{
+            let card = game.deck.randomDeck[index]
+            print(card)
+            makeButtonWith(card: card, button: cardButton[index])
+        }
+    }
 }
 
 
