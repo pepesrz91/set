@@ -24,7 +24,7 @@ class Set {
     func checkMatcOfCardsWith(Indexes indexArray:[Int]) -> Bool {
         var cards = [Card]()
         for i in indexArray {
-            let card = deck.deck[i]
+            let card = deck.randomDeck[i]
             cards.append(card)
         }
         let cardOne = cards[0]

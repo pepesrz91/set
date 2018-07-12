@@ -11,6 +11,7 @@ import Foundation
 
 class Deck {
     var deck: [Card] = []
+    var randomDeck:[Card] = []
     let shapes: [CardShape] = [.Circle,.Triangle,.Square]
     let colors:[CardColor] = [.Red,.Blue,.Green]
     let shadows:[CardShadow] = [.Empty,.Full,.Stripes]
@@ -20,6 +21,9 @@ class Deck {
     
     init(){
         createDeck()
+        randomDeck = createRandomDeck(deck: deck)
+        print(randomDeck)
+        
     }
     //TODO: Function that shuffles current deck
     
@@ -41,12 +45,31 @@ class Deck {
         print(number)
     }
     
+    func createRandomDeck(deck d:[Card])->[Card]{
+        var randomDeck = [Card]()
+        var deckCopy = deck
+        for _ in deck{
+            let randomIndex = deckCopy.count.arc4random
+            randomDeck.append(deckCopy.remove(at: randomIndex))
+        }
+        return randomDeck
+    }
+    
     static func uniqueIdentifier()->Int{
         identifierFactory += 1
         return identifierFactory
     }
     
-    
-    
-    
+}
+
+extension Int {
+    var arc4random: Int {
+        if self > 0 {
+            return Int(arc4random_uniform(UInt32(self)))
+        } else if self < 0 {
+            return -Int(arc4random_uniform(UInt32(abs(self))))
+        } else {
+            return 0
+        }
+    }
 }

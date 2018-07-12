@@ -38,10 +38,9 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         for index in cardButton.indices{
-            let card = game.deck.deck[index]
+            let card = game.deck.randomDeck[index]
             print(card)
             makeButtonWith(card: card, button: cardButton[index])
-        
         }
     }
     @IBAction func selectCard(_ sender: UIButton) {
@@ -121,3 +120,5 @@ class ViewController: UIViewController {
         }
   }
 }
+
+
